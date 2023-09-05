@@ -56,7 +56,7 @@ public class UserController {
 	@RequestMapping( value="addUser", method=RequestMethod.POST )
 	public String addUser( @ModelAttribute("user") User user ) throws Exception {
 
-		System.out.println("/addUser.do");
+		System.out.println("/user/addUser : POST");
 		//Business Logic
 		userService.addUser(user);
 		

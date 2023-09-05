@@ -38,20 +38,44 @@ public class UserRestController {
 		System.out.println(this.getClass());
 	}
 	
+	@RequestMapping( value="json/addUser", method=RequestMethod.GET )
+	public String addUser() throws Exception {
+
+		System.out.println("/user/json/addUser : GET=======================================");
+		
+		return "redirect:/user/addUserView.jsp";
+	}
+	
+	// addUser
+	@RequestMapping( value="json/addUser", method=RequestMethod.POST )
+	public User adduser( @RequestBody User user,
+									HttpSession session ) throws Exception{
+										
+		System.out.println("/user/json/addUser : POST=======================================");
+		
+		userService.addUser(user);
+		
+		//Business Logic
+		return userService.getUser(user.getUserId());
+	}
+	
+	
+	// getUser
 	@RequestMapping( value="json/getUser/{userId}", method=RequestMethod.GET )
 	public User getUser( @PathVariable String userId ) throws Exception{
 		
-		System.out.println("/user/json/getUser : GET");
+		System.out.println("/user/json/getUser : GET=======================================");
 		
 		//Business Logic
 		return userService.getUser(userId);
 	}
-
+	
+	// login
 	@RequestMapping( value="json/login", method=RequestMethod.POST )
 	public User login(	@RequestBody User user,
 									HttpSession session ) throws Exception{
 	
-		System.out.println("/user/json/login : POST");
+		System.out.println("/user/json/login : POST=======================================");
 		//Business Logic
 		System.out.println("::"+user);
 		User dbUser=userService.getUser(user.getUserId());
@@ -62,4 +86,21 @@ public class UserRestController {
 		
 		return dbUser;
 	}
+	
+	@RequestMapping( value="json/updateUser", method=RequestMethod.POST )
+	public User updateUser( @RequestBody User user , Model model , HttpSession session) throws Exception{
+
+		System.out.println("/user/updateUser : POST=======================================");
+		//Business Logic
+		userService.updateUser(user);
+		
+//		String sessionId=((User)session.getAttribute("user")).getUserId();
+//		if(sessionId.equals(user.getUserId())){
+//			session.setAttribute("user", user);
+//		}
+		System.out.println("============"+userService.getUser(user.getUserId()));
+		//return "redirect:/getUser.do?userId="+user.getUserId();
+		return userService.getUser(user.getUserId());
+	}
+	
 }
