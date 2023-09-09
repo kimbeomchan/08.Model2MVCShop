@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -7,50 +7,64 @@
 
 <html>
 <head>
-<title>íšŒì›ì •ë³´ìˆ˜ì •</title>
+<title>È¸¿øÁ¤º¸¼öÁ¤</title>
 
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
-
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="../javascript/calendar.js">
 </script>
 
 <script type="text/javascript">
-<!--
+
 function fncUpdateProduct(){
-	//Form ìœ íš¨ì„± ê²€ì¦
+	//Form À¯È¿¼º °ËÁõ
  	var name = document.detailForm.prodName.value;
 	var detail = document.detailForm.prodDetail.value;
 	var manuDate = document.detailForm.manuDate.value;
 	var price = document.detailForm.price.value;
 
 	if(name == null || name.length<1){
-		alert("ìƒí’ˆëª…ì€ ë°˜ë“œì‹œ ì…ë ¥í•˜ì—¬ì•¼ í•©ë‹ˆë‹¤.");
+		alert("»óÇ°¸íÀº ¹İµå½Ã ÀÔ·ÂÇÏ¿©¾ß ÇÕ´Ï´Ù.");
 		return;
 	}
 	if(detail == null || detail.length<1){
-		alert("ìƒí’ˆìƒì„¸ì •ë³´ëŠ” ë°˜ë“œì‹œ ì…ë ¥í•˜ì—¬ì•¼ í•©ë‹ˆë‹¤.");
+		alert("»óÇ°»ó¼¼Á¤º¸´Â ¹İµå½Ã ÀÔ·ÂÇÏ¿©¾ß ÇÕ´Ï´Ù.");
 		return;
 	}
 	if(manuDate == null || manuDate.length<1){
-		alert("ì œì¡°ì¼ìëŠ” ë°˜ë“œì‹œ ì…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.");
+		alert("Á¦Á¶ÀÏÀÚ´Â ¹İµå½Ã ÀÔ·ÂÇÏ¼Å¾ß ÇÕ´Ï´Ù.");
 		return;
 	}
 	if(price == null || price.length<1){
-		alert("ê°€ê²©ì€ ë°˜ë“œì‹œ ì…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.");
+		alert("°¡°İÀº ¹İµå½Ã ÀÔ·ÂÇÏ¼Å¾ß ÇÕ´Ï´Ù.");
 		return;
 	}
 		
-	document.detailForm.action='/product/updateProduct';
-	document.detailForm.submit();
+	//document.detailForm.action='/product/updateProduct';
+	//document.detailForm.submit();
+	$("form").attr("method", "POST").attr("action", "/product/updateProduct").submit();
 }
--->
+
+
+$(function () {
+	$("td:contains('¼öÁ¤')").on("click", function() {
+		fncUpdateProduct();
+	});
+});
+
+$(function () {
+	$("td:contains('Ãë¼Ò')").on("click", function() {
+		history.go(-1);
+	});
+});
 
 </script>
 </head>
 
 <body bgcolor="#ffffff" text="#000000">
 
-<form name="detailForm" method="post">
+<!-- <form name="detailForm" method="post"> -->
+<form name="detailForm" >
 
 <input type="hidden" name="prodNo" value="${vo.prodNo}"/>
 
@@ -62,7 +76,7 @@ function fncUpdateProduct(){
 		<td background="/images/ct_ttl_img02.gif" width="100%" style="padding-left: 10px;">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td width="93%" class="ct_ttl01">ìƒí’ˆìˆ˜ì •</td>
+					<td width="93%" class="ct_ttl01">»óÇ°¼öÁ¤</td>
 					<td width="20%" align="right">&nbsp;</td>
 				</tr>
 			</table>
@@ -79,7 +93,7 @@ function fncUpdateProduct(){
 	</tr>
 	<tr>
 		<td width="104" class="ct_write">
-			ìƒí’ˆëª… <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
+			»óÇ°¸í <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
@@ -98,7 +112,7 @@ function fncUpdateProduct(){
 	</tr>
 	<tr>
 		<td width="104" class="ct_write">
-			ìƒí’ˆìƒì„¸ì •ë³´ <img	src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
+			»óÇ°»ó¼¼Á¤º¸ <img	src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
@@ -111,7 +125,7 @@ function fncUpdateProduct(){
 	</tr>
 	<tr>
 		<td width="104" class="ct_write">
-			ì œì¡°ì¼ì <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
+			Á¦Á¶ÀÏÀÚ <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
@@ -126,19 +140,19 @@ function fncUpdateProduct(){
 	</tr>
 	<tr>
 		<td width="104" class="ct_write">
-			ê°€ê²© <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
+			°¡°İ <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<input type="text" name="price" value="${vo.price}"
-						class="ct_input_g" style="width: 100px; height: 19px" maxLength="50"/>&nbsp;ì›
+						class="ct_input_g" style="width: 100px; height: 19px" maxLength="50"/>&nbsp;¿ø
 		</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
 	<tr>
-		<td width="104" class="ct_write">ìƒí’ˆì´ë¯¸ì§€</td>
+		<td width="104" class="ct_write">»óÇ°ÀÌ¹ÌÁö</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<input	type="text" name="fileName" class="ct_input_g" 
@@ -160,7 +174,8 @@ function fncUpdateProduct(){
 						<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
 					</td>
 					<td background="/images/ct_btnbg02.gif" class="ct_btn01"	style="padding-top: 3px;">
-						<a href="javascript:fncUpdateProduct();">ìˆ˜ì •</a>
+						<!-- <a href="javascript:fncUpdateProduct();">¼öÁ¤</a> -->
+						¼öÁ¤
 					</td>
 					<td width="14" height="23">
 						<img src="/images/ct_btnbg03.gif" width="14" height="23"/>
@@ -170,7 +185,8 @@ function fncUpdateProduct(){
 						<img src="/images/ct_btnbg01.gif"width="17" height="23"/>
 					</td>
 					<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top: 3px;">
-						<a href="javascript:history.go(-1)">ì·¨ì†Œ</a>
+						<!-- <a href="javascript:history.go(-1)">Ãë¼Ò</a> -->
+						Ãë¼Ò
 					</td>
 					<td width="14" height="23">
 						<img src="/images/ct_btnbg03.gif" width="14" height="23"/>
