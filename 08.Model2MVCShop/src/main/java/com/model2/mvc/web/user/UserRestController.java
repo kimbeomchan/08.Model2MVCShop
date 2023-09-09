@@ -168,15 +168,12 @@ public class UserRestController {
 	}
 	
 	@RequestMapping( value="json/checkDuplication", method=RequestMethod.POST )
-	public boolean checkDuplicationPOST( @RequestBody User user, String userId , Model model ) throws Exception{
+	public boolean checkDuplicationPOST( @RequestBody User user, Model model ) throws Exception{
 		
 		System.out.println("/user/json/checkDuplication : POST");
 		System.out.println("json/checkDuplication :: " + user.getUserId());
 		//Business Logic
 		boolean result=userService.checkDuplication(user.getUserId());
-		// Model °ú View ¿¬°á
-//		model.addAttribute("result", new Boolean(result));
-//		model.addAttribute("userId", userId);
 
 		return result;
 	}

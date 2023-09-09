@@ -30,7 +30,7 @@ public class Search {
 	}
 	
 	public int getPageUnit() {
-		return pageSize;
+		return pageUnit;
 	}
 	
 	public void setPageUnit(int pageUnit) {
@@ -70,7 +70,7 @@ public class Search {
 	public String toString() {
 		return "Search [currentPage=" + currentPage + ", searchCondition="
 				+ searchCondition + ", searchKeyword=" + searchKeyword
-				+ ", pageSize=" + pageSize + ", endRowNum=" + endRowNum
-				+ ", startRowNum=" + startRowNum + "]";
+				+ ", pageSize=" + pageSize + ", pageUnit=" + pageUnit
+				+ ", endRowNum=" + endRowNum + ", startRowNum=" + startRowNum + "]";
 	}
 }

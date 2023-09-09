@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.model2.mvc.common.Page;
 import com.model2.mvc.common.Search;
 import com.model2.mvc.service.domain.Product;
-import com.model2.mvc.service.domain.User;
 import com.model2.mvc.service.product.ProductService;
-import com.model2.mvc.service.user.UserService;
 
 
 //==> 회원관리 Controller
@@ -63,7 +61,7 @@ public class ProductController {
 	@RequestMapping( value="getProduct", method=RequestMethod.GET )
 	public String getProductGET( @RequestParam("prodNo") int prodNo , Model model, HttpSession session ) throws Exception {
 		
-		System.out.println("/product/getProduct : POST");
+		System.out.println("/product/getProduct : GET");
 		//Business Logic
 		Product product = productService.getProduct(prodNo);
 		// Model 과 View 연결
@@ -166,7 +164,7 @@ public class ProductController {
 	public String updateProductView( @RequestParam("prodNo") int prodNo, 
 									 @RequestParam("menu") String menu, Model model ) throws Exception{
 
-		System.out.println("/updateProductView : POST");
+		System.out.println("/updateProductView : GET");
 		
 		//Business Logic
 		Product product = productService.getProduct(prodNo);
